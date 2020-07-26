@@ -1,0 +1,27 @@
+DAVID (7/30)
+Staking Dashboard (UI/UX)
+- add global statistics for total staked amounts by all users
+- add global statistics for total claimed amounts by all users
+- add global statistics for total claimable amounts by all users
+- add whitelisted t/f query for the connected wallet
+- color schemes should be upgraded (mkr)
+- timestamp conversion for user staked period
+
+Farming Dashboard (UI/UX) (8/3)
+- add global statistics for total farmed rewards claimable by all users
+- add global statistics for total claimed rewards by all users
+- add default fees query 
+- collect button
+- color schemes should be improved (mkr)
+
+
+EUGENE (8/1)
+BREE token contract (testnet)
+- publicize testnet contract 1 day prior to testnet launch
+- individual audits should be conducted & confirmed
+- add whitelisting function for stakers
+
+
+DANIEL (8/1)
+- integrate testnet contract with dashboard
+- governance dashboard nulled
