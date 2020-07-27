@@ -3,7 +3,7 @@ Staking Dashboard (UI/UX)
 - add global statistics for total staked amounts by all users - completed
 - add global statistics for total claimed amounts by all users - completed
 - add global statistics for total claimable amounts by all users - completed
-- add whitelisted t/f query for the connected wallet
+- add whitelisted t/f query for the connected wallet - completed
 - color schemes should be upgraded (mkr)
 - timestamp conversion for user staked period
 
