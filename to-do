@@ -20,6 +20,8 @@ BREE token contract (testnet)
 - publicize testnet contract 1 day prior to testnet launch
 - individual audits should be conducted & confirmed
 - add whitelisting function for stakers - completed
+- custom farming rates for individual governance asset
+- global query functions for staking and farming required
 
 
 DANIEL (8/1)
