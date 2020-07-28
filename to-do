@@ -22,6 +22,7 @@ BREE token contract (testnet)
 - add whitelisting function for stakers - completed
 - custom farming rates for individual governance asset
 - global query functions for staking and farming required
+- custom amounts for start farming & stop farming for individual asset
 
 
 DANIEL (8/1)
