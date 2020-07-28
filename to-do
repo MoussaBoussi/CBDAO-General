@@ -33,3 +33,4 @@ DANIEL (8/1)
 
 NOTES
 off-chain oracle needs to be utilized for watching user balances for other governance assets (EUGENE)
+VPS set up for off-chain oracles on aws needed ubuntu 18.04 (EUGENE)      
