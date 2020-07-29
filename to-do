@@ -2,8 +2,8 @@ DAVID (7/30)
 Staking Dashboard (UI/UX)
 - add global statistics for total staked amounts by all users - completed
 - add global statistics for total claimed amounts by all users - completed
-- add global statistics for total claimable amounts by all users - completed
-(Global stats for total claimable rewards cannot be done. We need to remove this - Eugene)
+- add global statistics for total claimable amounts by all users - removed
+(Global stats for total claimable rewards cannot be done. We need to remove this - Eugene) - checked
 
 - add whitelisted t/f query for the connected wallet - completed
 - color schemes should be upgraded (mkr)
