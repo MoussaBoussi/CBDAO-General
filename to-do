@@ -11,6 +11,7 @@ Staking Dashboard (UI/UX)
 
 Farming Dashboard (UI/UX) (8/3)
 - add global statistics for total farmed rewards claimable by all users - completed
+(Global stats for total claimable farmed rewards cannot be done. We need to remove this - Eugene)
 - add global statistics for total claimed rewards by all users - completed
 - add default fees query 
 - collect button
