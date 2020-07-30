@@ -46,3 +46,8 @@ Ropsten Test Progress
 - total supply calculation error with burning 
 - remove burning_owner function - too centralized
 - remove global halt function - too centralized
+- confirming if 'user' query function is where users check all active deposits, yield, time, etc.
+- staking period needs to be taken care of
+- stake rewards need to be taken care of - staking period must be the culprit
+- 'active deposits' from the 'users' query function needs to be taken care of! it doesn't update even after withdrawing 
+- farm function needs to be separated from user whitelisting
