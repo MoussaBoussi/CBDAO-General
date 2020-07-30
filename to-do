@@ -39,3 +39,10 @@ DANIEL (8/1)
 NOTES
 BREE directory added with all contracts uploaded accordingly (EUGENE)
 - Testing required. To be finalized within the 2-3 days.
+
+
+Ropsten Test Progress
+- whitelist t/f error
+- total supply calculation error with burning 
+- remove burning_owner function - too centralized
+- remove global halt function - too centralized
