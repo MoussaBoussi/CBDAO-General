@@ -16,22 +16,22 @@ Welcome to the official github repository for CoinBreeder.com. Coin Breeder DAO 
 [Email](mailto:hello@coinbreeder.com)
 
 
-
+#
 
 ## Repository Files
 
-```python
+```bash
 bree: directory containing $BREE token related smart contracts
 ```
 
-```python
+```bash
 dashboard-prototypes: front & backend files for staking, farming, governance dashboards.
 ```
 
-```python
+```bash
 governance: directory containing governance protocol related smart contracts.
 ```
-
+#
 
 ## Contributing
 Pull requests are welcome. For major changes, please open an issue first to discuss what you would like to change.
