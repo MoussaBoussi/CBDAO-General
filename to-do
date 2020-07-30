@@ -7,7 +7,8 @@ Staking Dashboard (UI/UX)
 
 - add whitelisted t/f query for the connected wallet - completed
 - color schemes should be upgraded (mkr)
-- timestamp conversion for user staked period
+- timestamp conversion for user staked period - completed
+(unix - human readable)
 
 Farming Dashboard (UI/UX) (8/3)
 - add global statistics for total farmed rewards claimable by all users - completed
