@@ -11,7 +11,7 @@ Staking Dashboard (UI/UX)
 
 Farming Dashboard (UI/UX) (8/3)
 - add global statistics for total farmed rewards claimable by all users - completed
-(Global stats for total claimable farmed rewards cannot be done. We need to remove this - Eugene)
+(Global stats for total claimable farmed rewards cannot be done. We need to remove this - Eugene) - checked
 - add global statistics for total claimed rewards by all users - completed
 - add default fees query 
 - collect button
@@ -36,6 +36,5 @@ DANIEL (8/1)
 
 
 NOTES
-off-chain oracle needs to be utilized for watching user balances for other governance assets (EUGENE)
+Ropsten testing of bree-prototype 1 in progress (DANIEL)
 
-Farming dashboard & staking dashboard should be removed as it cannot be achieved (DAVID)
