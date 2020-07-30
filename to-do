@@ -26,8 +26,8 @@ BREE token contract (testnet)
 - individual audits should be conducted & confirmed
 - add whitelisting function for stakers - completed
 - custom farming rates for individual governance asset - completed
-- global query functions for staking and farming required
-- custom amounts for start farming & stop farming for individual asset
+- global query functions for staking and farming required -completed
+- custom amounts for start farming & stop farming for individual asset - completed
 
 
 DANIEL (8/1)
@@ -37,5 +37,5 @@ DANIEL (8/1)
 
 
 NOTES
-Ropsten testing of bree-prototype 1 in progress (DANIEL)
-
+BREE directory added with all contracts uploaded accordingly (EUGENE)
+- Testing required. To be finalized within the 2-3 days.
