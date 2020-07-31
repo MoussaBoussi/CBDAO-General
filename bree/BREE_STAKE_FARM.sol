@@ -10,7 +10,7 @@ contract BREE_STAKE_FARM is Owned{
     
     using SafeMath for uint256;
     
-    uint256 public yieldCollectionFee = 0.01 ether;
+    uint256 public yieldCollectionFee = 0.001 ether;
     uint256 public stakingPeriod = 30 days;
     uint256 public stakeClaimFee = 0.001 ether;
     
