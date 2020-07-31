@@ -2,21 +2,18 @@ DAVID (7/30)
 Staking Dashboard (UI/UX)
 - add global statistics for total staked amounts by all users - completed
 - add global statistics for total claimed amounts by all users - completed
-- add global statistics for total claimable amounts by all users - removed
-(Global stats for total claimable rewards cannot be done. We need to remove this - Eugene) - checked
+
 
 - add whitelisted t/f query for the connected wallet - completed
-- color schemes should be upgraded (mkr)
+- color schemes should be upgraded 
 - timestamp conversion for user staked period - completed
 (unix - human readable)
 
 Farming Dashboard (UI/UX) (8/3)
-- add global statistics for total farmed rewards claimable by all users - completed
-(Global stats for total claimable farmed rewards cannot be done. We need to remove this - Eugene) - checked
 - add global statistics for total claimed rewards by all users - completed
-- add default fees query 
-- collect button
-- color schemes should be improved (mkr)
+- add default fees query - completed
+- collect button - completed
+- color schemes should be improved 
 - start farming / stop farming buttons must be added
 
 
