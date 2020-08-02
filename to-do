@@ -2,8 +2,6 @@ DAVID (7/30)
 Staking Dashboard (UI/UX)
 - add global statistics for total staked amounts by all users - completed
 - add global statistics for total claimed amounts by all users - completed
-
-
 - add whitelisted t/f query for the connected wallet - completed
 - color schemes should be upgraded 
 - timestamp conversion for user staked period - completed
@@ -15,6 +13,13 @@ Farming Dashboard (UI/UX) (8/3)
 - collect button - completed
 - color schemes should be improved 
 - start farming / stop farming buttons must be added - completed
+
+Governance Dashboard (UI/UX) (8/15)
+- add it as an additional page on existing dashboards
+- add trust scores on votes
+- add user's trust score
+- add trust score measurements on chart
+- arrange proposals under 'projects' page
 
 
 EUGENE (8/1)
@@ -37,7 +42,7 @@ NOTES
 BREE directory added with all contracts uploaded accordingly (EUGENE)
 - Testing required. To be finalized within the 2-3 days.
 
-Staking & Farming dashboard designs confirmed (DAVID)
+Staking & farming dashboards publicized (DAVID)
 
 
 
