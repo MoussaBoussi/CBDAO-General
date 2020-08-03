@@ -42,7 +42,7 @@ NOTES
 BREE directory added with all contracts uploaded accordingly (EUGENE)
 - Testing required. To be finalized within the 2-3 days. - completed & issues identified.
 Final internal testing will be conducted from today for the next 2-3 days. (EUGENE)
-
+Bree-stake-farm contract code updated (EUGENE)
 
 Staking & farming dashboards publicized (DAVID) - checked.
 
@@ -56,12 +56,11 @@ Staking & farming dashboards publicized (DAVID) - checked.
 
 
 Ropsten Test Progress
-- whitelist t/f error - completed
-- total supply calculation error with burning - completed
-- remove burning_owner function - too centralized - completed
-- remove global halt function - too centralized - completed
-- confirming if 'user' query function is where users check all active deposits, yield, time, etc. - true
-- staking period needs to be taken care of - completed
-- stake rewards need to be taken care of - staking period must be the culprit
-- 'active deposits' from the 'users' query function needs to be taken care of! it doesn't update even after withdrawing 
-- farm function needs to be separated from user whitelisting
+1. APY Interest rates calculation in seconds
+2. Max supply capped 10m. Total supply = circulating supply.
+3. lastStakedOn, yourActiveStake, yourTotalStakes query functions are fixed at 0.
+4. Redundant query function - pendingReward& totalStakedRewards serve the same purpose
+5. pendingReward changing with stake & re-staking (needs to keep accumulating on top of what has been accumulated)
+6. timestamp required for checking active staked balance
+7. CollectYield function needs fixing
+
