@@ -56,10 +56,10 @@ Staking & farming dashboards publicized (DAVID) - checked.
 
 
 Ropsten Test Progress
-1. APY Interest rates calculation in seconds
-2. Max supply capped 10m. Total supply = circulating supply.
-3. lastStakedOn, yourActiveStake, yourTotalStakes query functions are fixed at 0.
-4. Redundant query function - pendingReward& totalStakedRewards serve the same purpose
+1. APY Interest rates calculation in seconds - completed 
+2. Max supply capped 10m. Total supply = circulating supply. - completed
+3. lastStakedOn, yourActiveStake, yourTotalStakes query functions are fixed at 0. - completed 
+4. Redundant query function - pendingReward& totalStakedRewards serve the same purpose - completed
 5. pendingReward changing with stake & re-staking (needs to keep accumulating on top of what has been accumulated)
 6. timestamp required for checking active staked balance
 7. CollectYield function needs fixing
