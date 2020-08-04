@@ -1,5 +1,14 @@
+
 pragma solidity ^0.6.0;
 
+// ----------------------------------------------------------------------------
+// 'BREE' token contract
+
+// Symbol      : BREE 
+// Name        : CBDAO 
+// Total supply: 10 million (all tokens mintable by owner)
+// Decimals    : 18
+// ----------------------------------------------------------------------------
 
 import './SafeMath.sol';
 import './ERC20contract.sol';
@@ -16,7 +25,6 @@ contract Token is ERC20Interface, Owned {
     uint256 public decimals = 18;
     uint256 private maxCapSupply = 1e7 * 10**(decimals); // 10 million
     uint256 _totalSupply = 0;
-    uint256 _minted;
     address stakeFarmingContract;
     
     mapping(address => uint256) balances;
@@ -46,8 +54,7 @@ contract Token is ERC20Interface, Owned {
     // ------------------------------------------------------------------------
     function mintTokens(uint256 _amount, address _beneficiary) public{
         require(msg.sender == owner || msg.sender == stakeFarmingContract);
-        require(_minted + _amount <= maxCapSupply, "exceeds max cap supply 10 million");
-        _minted += _amount;
+        require(_totalSupply + _amount <= maxCapSupply, "exceeds max cap supply 10 million");
         _totalSupply += _amount;
         
         // mint _amount tokens and keep inside contract
