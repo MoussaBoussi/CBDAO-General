@@ -15,11 +15,12 @@ Farming Dashboard (UI/UX) (8/3)
 - start farming / stop farming buttons must be added - completed
 
 Governance Dashboard (UI/UX) (8/15)
-- add it as an additional page on existing dashboards
-- add trust scores on votes
+- add it as an additional page on existing dashboards - completed
+- add trust scores on votes - completed
 - add user's trust score
 - add trust score measurements on chart
 - arrange proposals under 'projects' page
+  (charts for yes/no, combined trust scores, votes usage - creator, winning voters, to be burned/burned)
 
 
 EUGENE (8/1)
