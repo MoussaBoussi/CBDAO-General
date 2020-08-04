@@ -34,7 +34,7 @@ contract BREE_STAKE_FARM is Owned{
         uint256 pendingGains;
         uint256 lastClaimedDate;
         uint256 totalGained;
-        bool    running;
+        //bool    running;
     }
     
     mapping(address => mapping(address => DepositedToken)) users;
@@ -108,7 +108,7 @@ contract BREE_STAKE_FARM is Owned{
     // ------------------------------------------------------------------------
     function YIELD(address _tokenAddress) public payable {
         require(msg.value >= yieldCollectionFee, "should pay exact claim fee");
-        require(users[msg.sender][_tokenAddress].running, "no existing farming");
+        // require(users[msg.sender][_tokenAddress].running, "no existing farming");
         require(pendingYield(_tokenAddress, msg.sender) > 0, "No pending yield");
         require(tokens[_tokenAddress].exists, "Token doesn't exist");
         
@@ -135,7 +135,7 @@ contract BREE_STAKE_FARM is Owned{
     // ------------------------------------------------------------------------
     function withdrawFarmedTokens(address _tokenAddress, uint256 _amount) public {
         require(tokens[_tokenAddress].exists, "Token doesn't exist");
-        require(users[msg.sender][_tokenAddress].running, "no existing farming");
+        // require(users[msg.sender][_tokenAddress].running, "no existing farming");
         require(users[msg.sender][_tokenAddress].activeDeposit >= _amount, "insufficient amount in farming");
         
         // withdraw the tokens and move from contract to the caller
@@ -143,7 +143,7 @@ contract BREE_STAKE_FARM is Owned{
         
         // update farming stats
             // check if we have any pending yield, add it to previousYield var
-            users[msg.sender][_tokenAddress].pendingGains += pendingYield(_tokenAddress, msg.sender);
+            users[msg.sender][_tokenAddress].pendingGains = pendingYield(_tokenAddress, msg.sender);
             // update amount 
             users[msg.sender][_tokenAddress].activeDeposit -= _amount;
             // update farming start time -- new farming will begin from this time onwards
@@ -151,8 +151,8 @@ contract BREE_STAKE_FARM is Owned{
             // reset last claimed figure as well -- new farming will begin from this time onwards
             users[msg.sender][_tokenAddress].lastClaimedDate = now;
             // close farming if balance is dropped to zero
-            if(users[msg.sender][_tokenAddress].activeDeposit == 0)
-                users[msg.sender][_tokenAddress].running = false;
+            // if(users[msg.sender][_tokenAddress].activeDeposit == 0)
+                //users[msg.sender][_tokenAddress].running = false;
         
         emit TokensClaimed(msg.sender, _amount);
     }
@@ -198,14 +198,19 @@ contract BREE_STAKE_FARM is Owned{
     // @required must be claimable
     // ------------------------------------------------------------------------
     function ClaimStakedTokens() external {
-        require(users[msg.sender][address(bree)].running, "no running stake");
+        //require(users[msg.sender][address(bree)].running, "no running stake");
+        require(users[msg.sender][address(bree)].activeDeposit > 0, "no running stake");
         require(users[msg.sender][address(bree)].startTime + stakingPeriod < now, "not claimable before staking period");
         
         // transfer staked tokens
         bree.transfer(msg.sender, users[msg.sender][address(bree)].activeDeposit);
         
+        // check if we have any pending reward, add it to pendingGains var
+        users[msg.sender][address(bree)].pendingGains = pendingReward(msg.sender);
+        // update amount 
+        users[msg.sender][address(bree)].activeDeposit = 0;
         // stop staking 
-        users[msg.sender][address(bree)].running = false;
+        //users[msg.sender][address(bree)].running = false;
         
         emit TokensClaimed(msg.sender, users[msg.sender][address(bree)].activeDeposit);
         
@@ -218,8 +223,7 @@ contract BREE_STAKE_FARM is Owned{
     // ------------------------------------------------------------------------
     function ClaimReward() external payable {
         require(msg.value >= stakeClaimFee, "should pay exact claim fee");
-        require(users[msg.sender][address(bree)].activeDeposit > 0, "insufficient stake");
-        require(users[msg.sender][address(bree)].lastClaimedDate < now, "nothing pending to claim");
+        require(pendingReward(msg.sender) > 0, "nothing pending to claim");
     
         // mint more tokens inside token contract
         bree.mintTokens(pendingReward(msg.sender), msg.sender);
@@ -263,19 +267,19 @@ contract BREE_STAKE_FARM is Owned{
     // @param farming asset/ token address
     // ------------------------------------------------------------------------
     function activeFarmDeposit(address _tokenAddress, address _user) public view returns(uint256 _activeDeposit){
-        if(users[_user][_tokenAddress].running){
-            // if running
-            return users[_user][_tokenAddress].activeDeposit;
-        } else{
+       // if(users[_user][_tokenAddress].running){
+        // if running
+        return users[_user][_tokenAddress].activeDeposit;
+        /*} else{
             return 0;
-        }
+        }*/
     }
     
     // ------------------------------------------------------------------------
     // Query to get the total farming of the user
     // @param farming asset/ token address
     // ------------------------------------------------------------------------
-    function yourTotalFarming(address _tokenAddress, address _user) public view returns(uint256 _totalFarming){
+    function yourTotalFarmingTillToday(address _tokenAddress, address _user) public view returns(uint256 _totalFarming){
         return users[_user][_tokenAddress].totalDeposits;
     }
     
@@ -298,9 +302,9 @@ contract BREE_STAKE_FARM is Owned{
     // Query to get if user have active farming
     // @param farming asset/ token address
     // ------------------------------------------------------------------------
-    function activeFarming(address _tokenAddress, address _user) public view returns(bool _result){
+    /*function activeFarming(address _tokenAddress, address _user) public view returns(bool _result){
         return users[_user][_tokenAddress].running;
-    }
+    }*/
     
     //#########################################################################################################################################################//
     //####################################################FARMING ONLY OWNER FUNCTIONS#########################################################################//
@@ -364,9 +368,11 @@ contract BREE_STAKE_FARM is Owned{
     // ------------------------------------------------------------------------
     function pendingReward(address _caller) public view returns(uint256 _pendingReward){
         uint256 _totalStakedTime = now.sub(users[_caller][address(bree)].lastClaimedDate);
+        
         // check if the time is greater than its maximum staked period
-        if(_totalStakedTime > stakingPeriod)
-            _totalStakedTime = stakingPeriod;
+        if(now > stakingPeriod.add(users[_caller][address(bree)].startTime))
+            _totalStakedTime = (stakingPeriod.add(users[_caller][address(bree)].startTime)).sub(users[_caller][address(bree)].lastClaimedDate);
+            
         uint256 _reward_token_second = ((tokens[address(bree)].rate).mul(10 ** 21)).div(365 days); // added extra 10^21
         uint256 reward =  ((users[_caller][address(bree)].activeDeposit).mul(_totalStakedTime.mul(_reward_token_second))).div(10 ** 23); // remove extra 10^21 // the two extra 10^2 is for 100 (%)
         return (reward.add(users[_caller][address(bree)].pendingGains));
@@ -376,12 +382,12 @@ contract BREE_STAKE_FARM is Owned{
     // Query to get the active stake of the user
     // ------------------------------------------------------------------------
     function yourActiveStake(address _user) public view returns(uint256 _activeStake){
-        if(users[_user][address(bree)].running){
+        //if(users[_user][address(bree)].running){
             // if running
             return users[_user][address(bree)].activeDeposit;
-        } else{
+        /*} else{
             return 0;
-        }
+        }*/
     }
     
     // ------------------------------------------------------------------------
@@ -415,9 +421,9 @@ contract BREE_STAKE_FARM is Owned{
     // ------------------------------------------------------------------------
     // Query to get if user have any active stake
     // ------------------------------------------------------------------------
-    function isStakeActive(address _user) public view returns(bool _result){
+    /*function isStakeActive(address _user) public view returns(bool _result){
         return users[_user][address(bree)].running;
-    }
+    }*/
     
     // ------------------------------------------------------------------------
     // Query to get the staking rate
@@ -488,17 +494,22 @@ contract BREE_STAKE_FARM is Owned{
     // Internal function to add new deposit
     // ------------------------------------------------------------------------        
     function _newDeposit(address _tokenAddress, uint256 _amount) internal{
-        require(!users[msg.sender][_tokenAddress].running, "Already running");
+        //require(!users[msg.sender][_tokenAddress].running, "Already running");
+        require(users[msg.sender][_tokenAddress].activeDeposit ==  0, "Already running");
         require(tokens[_tokenAddress].exists, "Token doesn't exist");
         
         // add that token into the contract balance
         // check if we have any pending reward/yield, add it to pendingGains variable
-        users[msg.sender][_tokenAddress].pendingGains += pendingReward(msg.sender);
+        if(_tokenAddress == address(bree))
+            users[msg.sender][_tokenAddress].pendingGains = pendingReward(msg.sender);
+        else
+            users[msg.sender][_tokenAddress].pendingGains = pendingYield(_tokenAddress, msg.sender);
+            
         users[msg.sender][_tokenAddress].activeDeposit = _amount;
         users[msg.sender][_tokenAddress].totalDeposits += _amount;
         users[msg.sender][_tokenAddress].startTime = now;
         users[msg.sender][_tokenAddress].lastClaimedDate = now;
-        users[msg.sender][_tokenAddress].running = true;
+        // users[msg.sender][_tokenAddress].running = true;
     }
 
     // ------------------------------------------------------------------------
@@ -506,11 +517,14 @@ contract BREE_STAKE_FARM is Owned{
     // ------------------------------------------------------------------------        
     function _addToExisting(address _tokenAddress, uint256 _amount) internal{
         require(tokens[_tokenAddress].exists, "Token doesn't exist");
-        require(users[msg.sender][_tokenAddress].running, "no running farming/stake");
-        
+        // require(users[msg.sender][_tokenAddress].running, "no running farming/stake");
+        require(users[msg.sender][_tokenAddress].activeDeposit > 0, "no running farming/stake");
         // update farming stats
             // check if we have any pending reward/yield, add it to pendingGains variable
-            users[msg.sender][_tokenAddress].pendingGains += pendingReward(msg.sender);
+            if(_tokenAddress == address(bree))
+                users[msg.sender][_tokenAddress].pendingGains = pendingReward(msg.sender);
+            else
+                users[msg.sender][_tokenAddress].pendingGains = pendingYield(_tokenAddress, msg.sender);
             // update current deposited amount 
             users[msg.sender][_tokenAddress].activeDeposit += _amount;
             // update total deposits till today
