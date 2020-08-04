@@ -1,4 +1,4 @@
-
+// SPDX-License-Identifier: UNLICENSED
 pragma solidity ^0.6.0;
 
 import "./Owned.sol";
@@ -13,7 +13,6 @@ contract BREE_STAKE_FARM is Owned{
     uint256 public yieldCollectionFee = 0.01 ether;
     uint256 public stakingPeriod = 30 days;
     uint256 public stakeClaimFee = 0.001 ether;
-    
     uint256 public totalYield;
     uint256 public totalRewards;
     
@@ -115,9 +114,8 @@ contract BREE_STAKE_FARM is Owned{
         
         // transfer fee to the owner
         owner.transfer(msg.value);
-        
-        // transfer the yield
-        bree.transferFromContract(msg.sender, pendingYield(_tokenAddress, msg.sender));
+        // mint more tokens inside token contract
+        bree.mintTokens(pendingYield(_tokenAddress, msg.sender), msg.sender);
         
         emit YieldCollected(_tokenAddress, pendingYield(_tokenAddress, msg.sender));
         
@@ -222,9 +220,9 @@ contract BREE_STAKE_FARM is Owned{
         require(msg.value >= stakeClaimFee, "should pay exact claim fee");
         require(users[msg.sender][address(bree)].activeDeposit > 0, "insufficient stake");
         require(users[msg.sender][address(bree)].lastClaimedDate < now, "nothing pending to claim");
-        
-        // transfer the reward tokens
-        bree.transferFromContract(msg.sender, pendingReward(msg.sender));
+    
+        // mint more tokens inside token contract
+        bree.mintTokens(pendingReward(msg.sender), msg.sender);
          
         emit RewardClaimed(msg.sender, pendingReward(msg.sender));
         
@@ -250,12 +248,12 @@ contract BREE_STAKE_FARM is Owned{
     // Query to get the pending yield
     // @param _tokenAddress address of the token asset
     // ------------------------------------------------------------------------
-    function pendingYield(address _tokenAddress, address _caller) public view returns(uint256 _pendingReward){
+    function pendingYield(address _tokenAddress, address _caller) public view returns(uint256 _pendingRewardWeis){
         uint256 _totalFarmingTime = now.sub(users[_caller][_tokenAddress].lastClaimedDate);
         
         uint256 _reward_token_second = ((tokens[_tokenAddress].rate).mul(10 ** 21)).div(365 days); // added extra 10^21
         
-        uint256 yield = ((users[_caller][_tokenAddress].activeDeposit).mul(_totalFarmingTime.mul(_reward_token_second))).div(10 ** 21); // remove extra 10^21
+        uint256 yield = ((users[_caller][_tokenAddress].activeDeposit).mul(_totalFarmingTime.mul(_reward_token_second))).div(10 ** 23); // remove extra 10^21 // 10^2 are for 100 (%)
         
         return yield.add(users[_caller][_tokenAddress].pendingGains);
     }
@@ -264,10 +262,10 @@ contract BREE_STAKE_FARM is Owned{
     // Query to get the active farm of the user
     // @param farming asset/ token address
     // ------------------------------------------------------------------------
-    function activeFarmDeposit(address _tokenAddress) public view returns(uint256 _activeDeposit){
-        if(users[msg.sender][_tokenAddress].running){
+    function activeFarmDeposit(address _tokenAddress, address _user) public view returns(uint256 _activeDeposit){
+        if(users[_user][_tokenAddress].running){
             // if running
-            return users[msg.sender][_tokenAddress].activeDeposit;
+            return users[_user][_tokenAddress].activeDeposit;
         } else{
             return 0;
         }
@@ -277,31 +275,31 @@ contract BREE_STAKE_FARM is Owned{
     // Query to get the total farming of the user
     // @param farming asset/ token address
     // ------------------------------------------------------------------------
-    function yourTotalFarming(address _tokenAddress) public view returns(uint256 _totalFarming){
-        return users[msg.sender][_tokenAddress].totalDeposits;
+    function yourTotalFarming(address _tokenAddress, address _user) public view returns(uint256 _totalFarming){
+        return users[_user][_tokenAddress].totalDeposits;
     }
     
     // ------------------------------------------------------------------------
     // Query to get the time of last farming of user
     // ------------------------------------------------------------------------
-    function lastFarmedOn(address _tokenAddress) public view returns(uint256 _unixLastFarmedTime){
-        return users[msg.sender][_tokenAddress].startTime;
+    function lastFarmedOn(address _tokenAddress, address _user) public view returns(uint256 _unixLastFarmedTime){
+        return users[_user][_tokenAddress].startTime;
     }
     
     // ------------------------------------------------------------------------
     // Query to get total earned rewards from particular farming
     // @param farming asset/ token address
     // ------------------------------------------------------------------------
-    function totalFarmingRewards(address _tokenAddress) public view returns(uint256 _totalEarned){
-        return users[msg.sender][_tokenAddress].totalGained;
+    function totalFarmingRewards(address _tokenAddress, address _user) public view returns(uint256 _totalEarned){
+        return users[_user][_tokenAddress].totalGained;
     }
     
     // ------------------------------------------------------------------------
     // Query to get if user have active farming
     // @param farming asset/ token address
     // ------------------------------------------------------------------------
-    function activeFarming(address _tokenAddress) public view returns(bool _result){
-        return users[msg.sender][_tokenAddress].running;
+    function activeFarming(address _tokenAddress, address _user) public view returns(bool _result){
+        return users[_user][_tokenAddress].running;
     }
     
     //#########################################################################################################################################################//
@@ -370,17 +368,17 @@ contract BREE_STAKE_FARM is Owned{
         if(_totalStakedTime > stakingPeriod)
             _totalStakedTime = stakingPeriod;
         uint256 _reward_token_second = ((tokens[address(bree)].rate).mul(10 ** 21)).div(365 days); // added extra 10^21
-        uint256 reward =  ((users[_caller][address(bree)].activeDeposit).mul(_totalStakedTime.mul(_reward_token_second))).div(10 ** 21); // remove extra 10^21
+        uint256 reward =  ((users[_caller][address(bree)].activeDeposit).mul(_totalStakedTime.mul(_reward_token_second))).div(10 ** 23); // remove extra 10^21 // the two extra 10^2 is for 100 (%)
         return (reward.add(users[_caller][address(bree)].pendingGains));
     }
     
     // ------------------------------------------------------------------------
     // Query to get the active stake of the user
     // ------------------------------------------------------------------------
-    function yourActiveStake() public view returns(uint256 _activeStake){
-        if(users[msg.sender][address(bree)].running){
+    function yourActiveStake(address _user) public view returns(uint256 _activeStake){
+        if(users[_user][address(bree)].running){
             // if running
-            return users[msg.sender][address(bree)].activeDeposit;
+            return users[_user][address(bree)].activeDeposit;
         } else{
             return 0;
         }
@@ -389,15 +387,15 @@ contract BREE_STAKE_FARM is Owned{
     // ------------------------------------------------------------------------
     // Query to get the total stakes of the user
     // ------------------------------------------------------------------------
-    function yourTotalStakes() public view returns(uint256 _totalStakes){
-        return users[msg.sender][address(bree)].totalDeposits;
+    function yourTotalStakesTillToday(address _user) public view returns(uint256 _totalStakes){
+        return users[_user][address(bree)].totalDeposits;
     }
     
     // ------------------------------------------------------------------------
     // Query to get the time of last stake of user
     // ------------------------------------------------------------------------
-    function lastStakedOn() public view returns(uint256 _unixLastStakedTime){
-        return users[msg.sender][address(bree)].startTime;
+    function lastStakedOn(address _user) public view returns(uint256 _unixLastStakedTime){
+        return users[_user][address(bree)].startTime;
     }
     
     // ------------------------------------------------------------------------
@@ -410,20 +408,16 @@ contract BREE_STAKE_FARM is Owned{
     // ------------------------------------------------------------------------
     // Query to get total earned rewards from stake
     // ------------------------------------------------------------------------
-    function totalStakeRewards(address _user) public view returns(uint256 _totalEarned){
+    function totalStakeRewardsClaimedTillToday(address _user) public view returns(uint256 _totalEarned){
         return users[_user][address(bree)].totalGained;
     }
     
     // ------------------------------------------------------------------------
     // Query to get if user have any active stake
     // ------------------------------------------------------------------------
-    function activeStake(address _user) public view returns(bool _result){
+    function isStakeActive(address _user) public view returns(bool _result){
         return users[_user][address(bree)].running;
     }
-    
-    //#########################################################################################################################################################//
-    //####################################################STAKING ONLY OWNER FUNCTION##########################################################################//
-    //#########################################################################################################################################################//
     
     // ------------------------------------------------------------------------
     // Query to get the staking rate
@@ -431,6 +425,21 @@ contract BREE_STAKE_FARM is Owned{
     function stakingRate() public view returns(uint256 APY){
         return tokens[address(bree)].rate;
     }
+    
+    // ------------------------------------------------------------------------
+    // Query to get the staking time left
+    // ------------------------------------------------------------------------
+    function stakingTimeLeft(address _user) public view returns(uint256 _secsLeft){
+        uint256 left = lastStakedOn(_user)+stakingPeriod - now;
+        if (left < 0)
+            return 0;
+        else 
+            return left;
+    }
+    
+    //#########################################################################################################################################################//
+    //####################################################STAKING ONLY OWNER FUNCTION##########################################################################//
+    //#########################################################################################################################################################//
     
     // ------------------------------------------------------------------------
     // Change staking rate
@@ -483,6 +492,8 @@ contract BREE_STAKE_FARM is Owned{
         require(tokens[_tokenAddress].exists, "Token doesn't exist");
         
         // add that token into the contract balance
+        // check if we have any pending reward/yield, add it to pendingGains variable
+        users[msg.sender][_tokenAddress].pendingGains += pendingReward(msg.sender);
         users[msg.sender][_tokenAddress].activeDeposit = _amount;
         users[msg.sender][_tokenAddress].totalDeposits += _amount;
         users[msg.sender][_tokenAddress].startTime = now;
