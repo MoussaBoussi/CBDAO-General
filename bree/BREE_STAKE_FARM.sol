@@ -367,11 +367,11 @@ contract BREE_STAKE_FARM is Owned{
     // Query to get the pending reward
     // ------------------------------------------------------------------------
     function pendingReward(address _caller) public view returns(uint256 _pendingReward){
-        uint256 _totalStakedTime = now.sub(users[_caller][address(bree)].lastClaimedDate);
+        uint256 _totalStakedTime = 0;
+        uint256 expiryDate = stakingPeriod.add(users[_caller][address(bree)].startTime);
         
-        // check if the time is greater than its maximum staked period
-        if(now > stakingPeriod.add(users[_caller][address(bree)].startTime))
-            _totalStakedTime = (stakingPeriod.add(users[_caller][address(bree)].startTime)).sub(users[_caller][address(bree)].lastClaimedDate);
+        if(users[_caller][address(bree)].lastClaimedDate < expiryDate)
+            _totalStakedTime = expiryDate.sub(users[_caller][address(bree)].lastClaimedDate);
             
         uint256 _reward_token_second = ((tokens[address(bree)].rate).mul(10 ** 21)).div(365 days); // added extra 10^21
         uint256 reward =  ((users[_caller][address(bree)].activeDeposit).mul(_totalStakedTime.mul(_reward_token_second))).div(10 ** 23); // remove extra 10^21 // the two extra 10^2 is for 100 (%)
@@ -436,11 +436,13 @@ contract BREE_STAKE_FARM is Owned{
     // Query to get the staking time left
     // ------------------------------------------------------------------------
     function stakingTimeLeft(address _user) public view returns(uint256 _secsLeft){
-        uint256 left = lastStakedOn(_user)+stakingPeriod - now;
-        if (left < 0)
-            return 0;
-        else 
-            return left;
+        uint256 left = 0; 
+        uint256 expiryDate = stakingPeriod.add(lastStakedOn(_user));
+        
+        if(now < expiryDate)
+            left = expiryDate.sub(now);
+            
+        return left;
     }
     
     //#########################################################################################################################################################//
