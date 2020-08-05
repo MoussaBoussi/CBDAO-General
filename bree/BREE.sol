@@ -1,4 +1,4 @@
-// SPDX-License-Identifier: UNLICENSED
+
 pragma solidity ^0.6.0;
 
 // ----------------------------------------------------------------------------
@@ -6,7 +6,7 @@ pragma solidity ^0.6.0;
 
 // Symbol      : BREE 
 // Name        : CBDAO 
-// Total supply: 10 million 
+// Total supply: 10 million (all tokens mintable by owner)
 // Decimals    : 18
 // ----------------------------------------------------------------------------
 
