@@ -11,7 +11,7 @@ Farming Dashboard (UI/UX) (8/3)
 - add global statistics for total claimed rewards by all users - completed
 - add default fees query - completed
 - collect button - completed
-- color schemes should be improved 
+- color schemes should be improved - completed
 - start farming / stop farming buttons must be added - completed
 
 Governance Dashboard (UI/UX) (8/15)
@@ -40,12 +40,11 @@ DANIEL (8/1)
 
 
 NOTES
-BREE directory added with all contracts uploaded accordingly (EUGENE)
-- Testing required. To be finalized within the 2-3 days. - completed & issues identified.
 Final internal testing will be conducted from today for the next 2-3 days. (EUGENE)
 Bree-stake-farm contract code updated (EUGENE)
 
-Staking & farming dashboards publicized (DAVID) - checked.
+Improved governance dashboard to be uploaded (DAVID)
+
 
 *Priority
 -Deploy the final token contract on ropsten - completed
