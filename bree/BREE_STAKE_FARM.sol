@@ -1,4 +1,4 @@
-// SPDX-License-Identifier: MIT License
+
 pragma solidity ^0.6.0;
 
 import "./Owned.sol";
