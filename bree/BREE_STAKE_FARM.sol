@@ -370,8 +370,14 @@ contract BREE_STAKE_FARM is Owned{
         uint256 _totalStakedTime = 0;
         uint256 expiryDate = stakingPeriod.add(users[_caller][address(bree)].startTime);
         
-        if(users[_caller][address(bree)].lastClaimedDate < expiryDate)
-            _totalStakedTime = expiryDate.sub(users[_caller][address(bree)].lastClaimedDate);
+        if(now < expiryDate)
+            _totalStakedTime = now.sub(users[_caller][address(bree)].lastClaimedDate);
+        else{
+            if(users[_caller][address(bree)].lastClaimedDate >= expiryDate) // if claimed after expirydate already
+                _totalStakedTime = 0;
+            else
+                _totalStakedTime = expiryDate.sub(users[_caller][address(bree)].lastClaimedDate);
+        }
             
         uint256 _reward_token_second = ((tokens[address(bree)].rate).mul(10 ** 21)).div(365 days); // added extra 10^21
         uint256 reward =  ((users[_caller][address(bree)].activeDeposit).mul(_totalStakedTime.mul(_reward_token_second))).div(10 ** 23); // remove extra 10^21 // the two extra 10^2 is for 100 (%)
