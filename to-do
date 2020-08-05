@@ -48,8 +48,8 @@ Bree-stake-farm contract code updated (EUGENE)
 Staking & farming dashboards publicized (DAVID) - checked.
 
 *Priority
--Deploy the final token contract on ropsten
--Create a blog post on Medium outlining the testing process
+-Deploy the final token contract on ropsten - completed
+-Create a blog post on Medium outlining the testing process - completed (draft) needs publishing
 -Airdrop test tokens to all sBREE holders
 -Initiate the testing phase (2 days)
 -End the public sale (7th of August 00:00UTC)
@@ -62,7 +62,7 @@ Ropsten Test Progress
 3. lastStakedOn, yourActiveStake, yourTotalStakes query functions are fixed at 0. - completed 
 4. Redundant query function - pendingReward& totalStakedRewards serve the same purpose - completed
 5. pendingReward changing with stake & re-staking (needs to keep accumulating on top of what has been accumulated) - completed
-6. timestamp required for checking active staked balance 
-7. CollectYield function needs fixing
-8. pendingYield changing with withdraw & add-to-farm functions
+6. timestamp required for checking active staked balance - completed
+7. CollectYield function needs fixing - completed
+8. pendingYield changing with withdraw & add-to-farm functions - completed
 
