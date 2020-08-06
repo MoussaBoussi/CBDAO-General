@@ -25,7 +25,7 @@ Governance Dashboard (UI/UX) (8/15)
 
 EUGENE (8/1)
 BREE token contract (testnet)
-- publicize testnet contract 1 day prior to testnet launch (protytpe 2 has been publicized)
+- publicize testnet contract 1 day prior to testnet launch (protytpe 2 has been publicized) - completed
 - individual audits should be conducted & confirmed - audit deal confirmed with SBL
 - add whitelisting function for stakers - completed
 - custom farming rates for individual governance asset - completed
@@ -48,11 +48,11 @@ Improved governance dashboard to be uploaded (DAVID)
 
 *Priority
 -Deploy the final token contract on ropsten - completed
--Create a blog post on Medium outlining the testing process - completed (draft) needs publishing
--Airdrop test tokens to all sBREE holders
--Initiate the testing phase (2 days)
--End the public sale (7th of August 00:00UTC)
--Submit the code to SBL for an audit
+-Create a blog post on Medium outlining the testing process - completed
+-Airdrop test tokens to all sBREE holders - completed
+-Initiate the testing phase (2 days) - in progress 
+-End the public sale (7th of August 00:00UTC) - in progress
+-Submit the code to SBL for an audit - in progress
 
 
 Ropsten Test Progress
