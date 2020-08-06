@@ -36,7 +36,6 @@ contract BREE_STAKE_FARM is Owned{
         uint256 totalGained;
         uint    rate;
         uint    period;
-        //bool    running;
     }
     
     mapping(address => mapping(address => DepositedToken)) users;
@@ -150,9 +149,6 @@ contract BREE_STAKE_FARM is Owned{
             users[msg.sender][_tokenAddress].startTime = now;
             // reset last claimed figure as well -- new farming will begin from this time onwards
             users[msg.sender][_tokenAddress].lastClaimedDate = now;
-            
-            // update the farming rate
-            users[msg.sender][_tokenAddress].rate = tokens[_tokenAddress].rate;
         
         emit TokensClaimed(msg.sender, _amount);
     }
@@ -253,7 +249,7 @@ contract BREE_STAKE_FARM is Owned{
     function pendingYield(address _tokenAddress, address _caller) public view returns(uint256 _pendingRewardWeis){
         uint256 _totalFarmingTime = now.sub(users[_caller][_tokenAddress].lastClaimedDate);
         
-        uint256 _reward_token_second = ((users[_caller][_tokenAddress].rate).mul(10 ** 21)).div(365 days); // added extra 10^21
+        uint256 _reward_token_second = ((tokens[_tokenAddress].rate).mul(10 ** 21)).div(365 days); // added extra 10^21
         
         uint256 yield = ((users[_caller][_tokenAddress].activeDeposit).mul(_totalFarmingTime.mul(_reward_token_second))).div(10 ** 23); // remove extra 10^21 // 10^2 are for 100 (%)
         
@@ -266,15 +262,6 @@ contract BREE_STAKE_FARM is Owned{
     // ------------------------------------------------------------------------
     function activeFarmDeposit(address _tokenAddress, address _user) public view returns(uint256 _activeDeposit){
         return users[_user][_tokenAddress].activeDeposit;
-    }
-    
-    // ------------------------------------------------------------------------
-    // Query to get the rate at which the user farmed
-    // @param farming asset/ token address
-    // @param _user users address
-    // ------------------------------------------------------------------------
-    function yourFarmingRate(address _tokenAddress, address _user) public view returns(uint256 _farmingRate){
-        return users[_user][_tokenAddress].rate;
     }
     
     // ------------------------------------------------------------------------
@@ -423,7 +410,7 @@ contract BREE_STAKE_FARM is Owned{
     // ------------------------------------------------------------------------
     // Query to get the staking rate you staked at
     // ------------------------------------------------------------------------
-    function yourStakingRate(address _user) public view returns(uint256 _stakingPeriod){
+    function yourStakingRate(address _user) public view returns(uint256 _stakingRate){
         return users[_user][address(bree)].rate;
     }
     
@@ -506,6 +493,7 @@ contract BREE_STAKE_FARM is Owned{
         if(_tokenAddress == address(bree)){
             users[msg.sender][_tokenAddress].pendingGains = pendingReward(msg.sender);
             users[msg.sender][_tokenAddress].period = stakingPeriod;
+            users[msg.sender][_tokenAddress].rate = tokens[_tokenAddress].rate; // rate for stakers will be fixed at time of staking
         }
         else
             users[msg.sender][_tokenAddress].pendingGains = pendingYield(_tokenAddress, msg.sender);
@@ -515,8 +503,6 @@ contract BREE_STAKE_FARM is Owned{
         users[msg.sender][_tokenAddress].startTime = now;
         users[msg.sender][_tokenAddress].lastClaimedDate = now;
         
-        
-        users[msg.sender][_tokenAddress].rate = tokens[_tokenAddress].rate;
     }
 
     // ------------------------------------------------------------------------
@@ -531,6 +517,7 @@ contract BREE_STAKE_FARM is Owned{
             if(_tokenAddress == address(bree)){
                 users[msg.sender][_tokenAddress].pendingGains = pendingReward(msg.sender);
                 users[msg.sender][_tokenAddress].period = stakingPeriod;
+                users[msg.sender][_tokenAddress].rate = tokens[_tokenAddress].rate; // rate of only staking will be updated when more is added to stake
             }
             else
                 users[msg.sender][_tokenAddress].pendingGains = pendingYield(_tokenAddress, msg.sender);
@@ -543,7 +530,7 @@ contract BREE_STAKE_FARM is Owned{
             // reset last claimed figure as well -- new stake/farming will begin from this time onwards
             users[msg.sender][_tokenAddress].lastClaimedDate = now;
             
-            users[msg.sender][_tokenAddress].rate = tokens[_tokenAddress].rate;
+            
     }
 
     // ------------------------------------------------------------------------
