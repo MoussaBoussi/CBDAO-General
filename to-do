@@ -1,61 +1,33 @@
-DAVID (7/30)
-Staking Dashboard (UI/UX)
-- add global statistics for total staked amounts by all users - completed
-- add global statistics for total claimed amounts by all users - completed
-- add whitelisted t/f query for the connected wallet - completed
-- color schemes should be upgraded 
-- timestamp conversion for user staked period - completed
-(unix - human readable)
-
-Farming Dashboard (UI/UX) (8/3)
-- add global statistics for total claimed rewards by all users - completed
-- add default fees query - completed
-- collect button - completed
-- color schemes should be improved - completed
-- start farming / stop farming buttons must be added - completed
-
-Governance Dashboard (UI/UX) (8/15)
-- add it as an additional page on existing dashboards - completed
-- add trust scores on votes - completed
-- add user's trust score
-- add trust score measurements on chart
-- arrange proposals under 'projects' page
-  (charts for yes/no, combined trust scores, votes usage - creator, winning voters, to be burned/burned)
+Priorities
+- Submit contracts audits - in progress
+- Fix potential issues 
+- Deploy BREE on mainnet
+- Deploy a swap sBREE <> BREE contract
+- Deploy off-chain oracle to fetch governance asset values for determining farming rates
+- Allocate initial liquidity (avg. weighted price of sBREE until the swap date) & burn leftover tokens
+- Integrate BREE_STAKE_FARM contract on the dashboard
+- Create a video (landing page)
+- Initiate marketing plans
 
 
-EUGENE (8/1)
-BREE token contract (testnet)
-- publicize testnet contract 1 day prior to testnet launch (protytpe 2 has been publicized) - completed
-- individual audits should be conducted & confirmed - audit deal confirmed with SBL
-- add whitelisting function for stakers - completed
-- custom farming rates for individual governance asset - completed
-- global query functions for staking and farming required -completed
-- custom amounts for start farming & stop farming for individual asset - completed
+DAVID
+- improved website UI/UX
+- prototypes for BREE mobile wallet
 
+EUGENE
+- sBREE <> BREE
+- governance smart contract
+- trust score token
+- initiate research on cross-chain tokens
 
-DANIEL (8/1)
-- integrate testnet contract with dashboard
-- governance dashboard nulled
+DANIEL
+- integrate BSF contract on dashboard
+- initiate marketing plans
 
 
 
-NOTES
-Final internal testing will be conducted from today for the next 2-3 days. (EUGENE)
-Bree-stake-farm contract code updated (EUGENE)
-
-Improved governance dashboard to be uploaded (DAVID)
-
-
-*Priority
--Deploy the final token contract on ropsten - completed
--Create a blog post on Medium outlining the testing process - completed
--Airdrop test tokens to all sBREE holders - completed
--Initiate the testing phase (2 days) - in progress
--End the public sale (7th of August 00:00UTC) - completed
--Submit the code to SBL for an audit - submitted
--Integrate prototypes - in progress
-
-
-Ropsten Test Progress
-All internal tests have been completed. Live for public testing. (DAN)
-
+COMPLETED
+- public sale
+- prototypes for staking & farming
+- prototype for governance 
+- public testing phase
