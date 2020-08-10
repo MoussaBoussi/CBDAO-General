@@ -12,16 +12,19 @@ Priorities
 
 DAVID
 - improved website UI/UX
+- token swap dashboard needed
 - prototypes for BREE mobile wallet
 
 EUGENE
-- sBREE <> BREE
+- sBREE <> BREE token swap contract
 - governance smart contract
+- oracle solution for determining fees at fixed USD prices of BREE
 - trust score token
 - initiate research on cross-chain tokens
 
 DANIEL
 - integrate BSF contract on dashboard
+- integrate token swap contract on dashboard
 - initiate marketing plans
 - created a meme competition for the community (https://medium.com/@coinbreeder/bree-twitter-memes-competition-991716bf18c5)
 - article on staking & farming written (https://medium.com/@coinbreeder/guide-staking-farming-bree-d47a66738a76)
