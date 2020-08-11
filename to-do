@@ -16,7 +16,7 @@ DAVID
 - prototypes for BREE mobile wallet
 
 EUGENE
-- sBREE <> BREE token swap contract
+- sBREE <> BREE token swap contract - completed requires testing
 - governance smart contract
 - oracle solution for determining fees at fixed USD prices of BREE
 - trust score token
