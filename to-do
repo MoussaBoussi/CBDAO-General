@@ -6,12 +6,12 @@ Priorities
 - Deploy off-chain oracle to fetch governance asset values for determining farming rates
 - Allocate initial liquidity (avg. weighted price of sBREE until the swap date) & burn leftover tokens
 - Integrate BREE_STAKE_FARM contract on the dashboard
-- Create a video (landing page)
+- Create a video (landing page) - in progress
 - Initiate marketing plans
 
 
 DAVID
-- improved website UI/UX
+- improved website UI/UX - in progress
 - token swap dashboard needed - completed
 - prototypes for BREE mobile wallet
 
@@ -40,3 +40,4 @@ COMPLETED
 
 NOTES
 Cross-chain token discussions AUG 10 2pm UTC (email) - EUGENE
+Script for video needs to be reviewed - David
