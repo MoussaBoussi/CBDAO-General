@@ -80,9 +80,9 @@ This will initiate your test blockchain instance. Keep this open and running for
 <a href="https://twitter.com/coinbreeder">
   <img src="https://3.bp.blogspot.com/-NxouMmz2bOY/T8_ac97cesI/AAAAAAAAGg0/e3vY1_bdnbE/s320/Twitter+logo+2012.png" width="100" title="hover text"> &nbsp;&nbsp;
 <a href="https://medium.com/@coinbreeder">
-  <img src="https://img.favpng.com/25/11/16/telegram-portable-network-graphics-computer-icons-logo-scalable-vector-graphics-png-favpng-PbvgS2hZaWJ78gfqNfnBsv9sT.jpg" width="100"  title="hover text"> &nbsp;&nbsp;
+  <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn%3AANd9GcTNreWlLZj-v64Is--pfO9zDCVEk0Gjp6XgkA&usqp=CAU" width="100" title="hover text"> &nbsp;&nbsp;
 <a href="https://t.me/coinbreederdao">
-  <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/8/83/Telegram_2019_Logo.svg/1024px-Telegram_2019_Logo.svg.png" width="100"  title="hover text"> &nbsp;&nbsp;
+  <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/8/83/Telegram_2019_Logo.svg/1024px-Telegram_2019_Logo.svg.png" width="100" title="hover text"> &nbsp;&nbsp;
 <a href="mailto:hello@coinbreeder.com">
   <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/e/ee/%28at%29.svg/1024px-%28at%29.svg.png" width="100" title="hover text">
 
