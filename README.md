@@ -3,6 +3,7 @@
 <br>
 Welcome to the official GitHub repository for **CBDAO**. **CBDAO** has been created to serve as a *sandbo*x for users to experiment and proof-test various consensus protocols which help govern DAOs. The initial consensus mechanism put in place will be the ‘*Incentivized Governance Protocol*’, a model invented by **CBDAO** which simplifies and combines the solutions of the holographic consensus model on a completely decentralized level.
 
+&nbsp;&nbsp;
 ## Why was this sandbox created?
 
 Existing **DAO** environments are usually limited with pressures arising from regulations and internal/external politics. 
@@ -12,6 +13,25 @@ This makes it:
 
 We believe that a *sandbox* free of these pressures will help bolster our abilities to research and implement various consensus mechanisms without any imposed limits, in a timely manner.
 
+&nbsp;&nbsp;
+## Articles to Read
+
+[CBDAO, Explained Simply](https://medium.com/@coinbreeder/cbdao-explained-in-simple-terms-b8d779978fd8)
+
+[Beginner's Guide](https://medium.com/@coinbreeder/beginners-guide-to-coin-breeder-dao-cbdao-500c208822d0)
+
+[Tokenomics of BREE](https://medium.com/@coinbreeder/tokenomics-of-cbdao-bree-a622fca12907)
+
+[How Farming Rates are Determined & How It Works to Autonomously Balance and Manage Staking Rates](https://medium.com/@coinbreeder/how-farming-rates-are-determined-c207295b4e0c)
+
+[How Voting Works in CBDAO](https://medium.com/@coinbreeder/guide-incentivized-governance-protocol-how-voting-works-in-cbdao-7ea3a35a0aec)
+
+[The State of DAOs](https://medium.com/@coinbreeder/the-state-of-daos-1aecba88d9ed)
+
+[Public Participation in Decentralizing Governance](https://medium.com/@coinbreeder/public-participation-in-decentralizing-governance-c44ef3df58c4)
+
+
+&nbsp;&nbsp;
  - ## [BREE](https://github.com/coinbreeder/CBDAO-General/tree/master/bree)
 #### Series of smart contracts (.solidity files) which are used on the Ethereum Blockchain
 ### Pre Requisites:
@@ -93,18 +113,3 @@ This will initiate your test blockchain instance. Keep this open and running for
 	Please make sure to update tests as appropriate.
 
 
-## Articles to Read
-
-[CBDAO, Explained Simply](https://medium.com/@coinbreeder/cbdao-explained-in-simple-terms-b8d779978fd8)
-
-[Beginner's Guide](https://medium.com/@coinbreeder/beginners-guide-to-coin-breeder-dao-cbdao-500c208822d0)
-
-[Tokenomics of BREE](https://medium.com/@coinbreeder/tokenomics-of-cbdao-bree-a622fca12907)
-
-[How Farming Rates are Determined & How It Works to Autonomously Balance and Manage Staking Rates](https://medium.com/@coinbreeder/how-farming-rates-are-determined-c207295b4e0c)
-
-[How Voting Works in CBDAO](https://medium.com/@coinbreeder/guide-incentivized-governance-protocol-how-voting-works-in-cbdao-7ea3a35a0aec)
-
-[The State of DAOs](https://medium.com/@coinbreeder/the-state-of-daos-1aecba88d9ed)
-
-[Public Participation in Decentralizing Governance](https://medium.com/@coinbreeder/public-participation-in-decentralizing-governance-c44ef3df58c4)
