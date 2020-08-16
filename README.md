@@ -59,9 +59,8 @@ We believe that a *sandbox* free of these pressures will help bolster our abilit
 
 **This is an optional step for this project**. Short for GO-Ethereum, geth is a command-line tool that allows you to connect to the public Ethereum blockchain and deploy your contracts on it. You’ll need to first install Geth, and then later, when you’re ready, launch a node.
 
-Note that connecting to the public Ethereum blockchain is no trivial task, and it will likely take a very long time to download depending on your system specs. I won’t go into deploying contracts on the public blockchain here, but you can follow the  [Geth documentation](https://github.com/ethereum/go-ethereum)  if you are interested.
+Note that connecting to the public Ethereum blockchain is no trivial task, and it will likely take a very long time to download depending on your system specs. Instructions: [Geth documentation](https://github.com/ethereum/go-ethereum).
 
-That’s it! You’ve now installed the major packages needed to go forward with a simple smart contract project.
 
 #### Clone Bree
 
@@ -71,7 +70,7 @@ Within your `bree` directory, run command
 
     truffle unbox bree
 
-To run and test a Solidity contract, you will need to have two things set up: the contract, migration and test files themselves, and the test blockchain. We saw how to run the test blockchain in part 2; it’s as simple as opening a second, separate shell and running
+To run and test a Solidity contract, you will need to have two things set up: the contract, migration and test files themselves, and the test blockchain. 
 
     ganache-cli
 This will initiate your test blockchain instance. Keep this open and running for the duration of your testing.
