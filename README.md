@@ -84,6 +84,25 @@ This will initiate your test blockchain instance. Keep this open and running for
 
 3. ## [Telegram-Helper-Bot](https://github.com/coinbreeder/CBDAO-General/tree/master/telegram-helper-bot)
  - #### Code for Telegram Messenger Bot (Node)
+ ### Pre Requisites:
+ - [Node & npm](https://nodejs.org/en/)
+ - [Git](https://git-scm.com/download/)
+ 
+ 
+ ### Installation: 
+  - Start by installing node & npm with the commands
+
+   `curl -sL https://deb.nodesource.com/setup_10.x | sudo -E bash -`
+   `sudo apt-get install -y nodejs`
+   
+ ### Clone the Bot
+    git clone https://github.com/coinbreeder/CBDAO-General.git
+	cd /CBDAO-General/telegram-helper-bot
+
+Within your `telegram-helper-bot` directory, run command
+
+    npm install
+    node bot.js
 
 &nbsp;&nbsp;
 
