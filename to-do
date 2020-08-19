@@ -6,7 +6,7 @@ Priorities
 - Deploy off-chain oracle to fetch governance asset values for determining farming rates
 - Allocate initial liquidity (avg. weighted price of sBREE until the swap date) & burn leftover tokens
 - Integrate BREE_STAKE_FARM contract on the dashboard
-- Create a video (landing page) - in progress
+- Create a video (landing page) - completed
 - Initiate marketing plans
 
 
